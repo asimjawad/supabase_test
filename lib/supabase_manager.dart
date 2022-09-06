@@ -1,8 +1,13 @@
 import 'package:supabase/supabase.dart';
 
+const String url = 'your key here';
+const String apiKey = 'your key here';
+
 class SupabaseManager {
-  final client = SupabaseClient('https://wctdqcgdijrbnqfubsbg.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndjdGRxY2dkaWpyYm5xZnVic2JnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjIzODM4MDgsImV4cCI6MTk3Nzk1OTgwOH0.PPH4-fq0JbBE36uXMP49FUsARzJmv8fN11sbZ6TnQcQ');
+  final client = SupabaseClient(
+    url,
+    apiKey,
+  );
 
   void signUpUser(String email, String password) async {
     await client.auth.signUp(email, password);
@@ -16,6 +21,8 @@ class SupabaseManager {
   }
 
   addData(String friendName) async {
-    await client.from('datatable').insert([{'name': friendName}]).execute();
+    await client.from('datatable').insert([
+      {'name': friendName}
+    ]).execute();
   }
 }
